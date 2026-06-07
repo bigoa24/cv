@@ -399,6 +399,10 @@ section.block h2 {
   margin-top: 10px;
 }
 
+.screenshots > .screenshot-link:only-child:not(.mobile-shot) {
+  grid-column: 1 / -1;
+}
+
 .mobile-shot {
   max-width: 200px;
 }
