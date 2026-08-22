@@ -12,6 +12,7 @@
   --phosphor: #7fe0a0;
   --phosphor-dim: rgba(127, 224, 160, 0.14);
   --mono: "SF Mono", "JetBrains Mono", "IBM Plex Mono", Menlo, Consolas, "Courier New", monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", "Helvetica Neue", Arial, sans-serif;
 }
 
 html { background: #06070a; }
@@ -22,10 +23,12 @@ html { background: #06070a; }
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: var(--mono);
+  /* telefonda sans: mono dar ekranda satırları gereğinden çok kırıyor.
+     768px ve üstünde terminal görünümüne geçiliyor (en altta). */
+  font-family: var(--sans);
   /* akışkan taban punto: mobilde 16px, geniş ekranda 18px */
   font-size: clamp(16px, 14.6px + 0.32vw, 18px);
-  line-height: 1.7;
+  line-height: 1.6;
   color: var(--fg);
   -webkit-font-smoothing: antialiased;
   position: relative;
@@ -246,7 +249,7 @@ nav a.active {
 main { padding: 56px 0 80px; }
 
 .page-title {
-  font-size: clamp(23px, 19.4px + 0.94vw, 31px);
+  font-size: clamp(24px, 19.4px + 0.94vw, 31px);
   font-weight: 600;
   margin-bottom: 8px;
   letter-spacing: -0.01em;
@@ -262,8 +265,7 @@ main { padding: 56px 0 80px; }
 
 /* Hero (home) */
 .hero h1 {
-  /* mono geniş yazar: mobilde tek satıra sığması için alt sınır düşük */
-  font-size: clamp(26px, 19.7px + 1.69vw, 44px);
+  font-size: clamp(30px, 19.7px + 1.69vw, 44px);
   font-weight: 700;
   letter-spacing: -0.01em;
   margin-bottom: 10px;
@@ -344,7 +346,7 @@ main { padding: 56px 0 80px; }
 section.block { margin-top: 48px; }
 
 section.block h2 {
-  font-size: clamp(18px, 16.2px + 0.47vw, 22px);
+  font-size: clamp(19px, 16.2px + 0.47vw, 22px);
   font-weight: 600;
   margin-bottom: 18px;
   letter-spacing: 0;
@@ -484,7 +486,7 @@ section.block h2::before {
 }
 
 .project h3 {
-  font-size: clamp(17px, 15.2px + 0.47vw, 21px);
+  font-size: clamp(18px, 15.2px + 0.47vw, 21px);
   font-weight: 600;
   letter-spacing: 0;
 }
@@ -702,6 +704,14 @@ footer {
 
 /* Hidden lang */
 [data-lang]:not(.active-lang) { display: none; }
+
+/* Tablet ve masaüstü: terminal/mono görünüm */
+@media (min-width: 768px) {
+  body {
+    font-family: var(--mono);
+    line-height: 1.7;
+  }
+}
 
 /* Responsive — puntolar clamp() ile zaten ölçekleniyor, burada sadece boşluklar */
 @media (max-width: 600px) {
