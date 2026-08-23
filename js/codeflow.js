@@ -3,37 +3,71 @@
   const COL_SPACING = 320;   /* sütunlar arası hedef mesafe (px) */
   const LINE_HEIGHT = 22;    /* #codeflow line-height ile uyumlu olmalı */
 
+  /* Havuzlar ve şablonlar sitedeki yetenek/proje etiketlerinden türetildi:
+     React / Next.js, React Native + Expo + Zustand, Node + Express +
+     Socket.IO, SAP ABAP + SQL, Python ML, Unity / C#. Satırlar yine
+     rastgele kurulur, çalışan bir kod değildir. */
+
   const idents = [
-    'buf', 'ctx', 'node', 'frame', 'chunk', 'token', 'stream', 'cache',
-    'packet', 'sector', 'handle', 'cursor', 'offset', 'payload', 'signal',
-    'kernel', 'thread', 'socket', 'vector', 'entry', 'region', 'trace'
+    'match', 'roster', 'player', 'period', 'stats', 'lobby', 'deck',
+    'card', 'session', 'event', 'score', 'shot', 'assist', 'rebound',
+    'payload', 'socket', 'entry', 'frame', 'record', 'timeline'
   ];
   const fns = [
-    'resolve', 'flush', 'decode', 'commit', 'spawn', 'mount', 'reduce',
-    'align', 'sync', 'emit', 'probe', 'yield', 'unwrap', 'collect', 'render'
+    'sync', 'resolve', 'fetch', 'commit', 'render', 'reduce', 'emit',
+    'persist', 'hydrate', 'validate', 'serialize', 'dispatch', 'collect'
   ];
-  const props = ['len', 'head', 'state', 'flags', 'depth', 'seed', 'mask', 'ptr'];
-  const types = ['u32', 'i64', 'byte', 'void*', 'usize', 'f32'];
+  const props = ['id', 'state', 'total', 'points', 'index', 'status', 'count'];
+  const hooks = ['useEffect', 'useMemo', 'useCallback'];   /* hepsi bağımlılık dizisi alır */
+  const routes = ['matches', 'players', 'roster', 'lobby', 'stats', 'events'];
+  const models = ['clf', 'model', 'net', 'pipeline'];
+  const abap = ['player', 'match', 'stats', 'roster', 'period'];
 
   const pick = (a) => a[(Math.random() * a.length) | 0];
   const num = (n) => (Math.random() * n) | 0;
   const hex = (d) => Math.floor(Math.random() * Math.pow(16, d)).toString(16).padStart(d, '0');
+  const cap = (w) => w[0].toUpperCase() + w.slice(1);
 
   const templates = [
-    () => `const ${pick(idents)} = ${pick(fns)}(${pick(idents)}, 0x${hex(4)});`,
-    () => `if (${pick(idents)}.${pick(props)} !== null) {`,
-    () => `  return ${pick(fns)}(${pick(idents)}.${pick(props)});`,
+    /* React / Next.js */
+    () => { const v = pick(idents); return `const [${v}, set${cap(v)}] = useState(null);`; },
+    () => { const v = pick(idents); return `${pick(hooks)}(() => ${pick(fns)}${cap(v)}(), [${v}Id]);`; },
+    () => `export default function ${cap(pick(routes))}Page({ ${pick(idents)} }) {`,
+    () => `  return <${cap(pick(idents))}Card ${pick(props)}={${pick(idents)}.${pick(props)}} />;`,
     () => `}`,
-    () => `for (let i = 0; i < ${num(512)}; i++) ${pick(idents)}[i] ^= mask;`,
-    () => `await ${pick(idents)}.${pick(fns)}({ ttl: ${num(9000)} });`,
-    () => `export function ${pick(fns)}_${pick(idents)}(${pick(idents)}) {`,
-    () => `${pick(types)} ${pick(idents)} = 0x${hex(6)};`,
-    () => `[ok] ${pick(idents)}/${pick(fns)} linked in ${num(400)}ms`,
-    () => `>> map 0x${hex(8)} -> 0x${hex(8)} (${num(64)} pages)`,
-    () => `let ${pick(idents)} = ${pick(idents)}.${pick(fns)}().${pick(props)};`,
-    () => `// ${pick(fns)} ${pick(idents)} :: ${pick(types)}`,
-    () => `  ${pick(idents)}.${pick(props)} += ${num(128)};`,
-    () => `assert(${pick(idents)}.${pick(props)} < ${num(2048)});`,
+
+    /* Node / Express / Socket.IO */
+    () => `app.get('/api/${pick(routes)}/:id', ${pick(fns)}${cap(pick(idents))});`,
+    () => `io.on('connection', (socket) => {`,
+    () => `  socket.emit('${pick(idents)}:update', { ${pick(props)}: ${num(240)} });`,
+    () => `await ${pick(idents)}.${pick(fns)}({ retry: ${num(5)} });`,
+
+    /* React Native / Expo / Zustand */
+    () => `await AsyncStorage.setItem('${pick(idents)}:${num(99)}', json);`,
+    () => `const use${cap(pick(idents))}Store = create((set) => ({`,
+
+    /* SAP ABAP */
+    () => { const t = pick(abap); return `SELECT * FROM z${t} INTO TABLE lt_${t}.`; },
+    () => `LOOP AT lt_${pick(abap)} INTO ls_${pick(abap)}.`,
+    () => { const t = pick(abap); return `  ls_${t}-${pick(props)} = ls_${t}-${pick(props)} + ${num(50)}.`; },
+    () => `ENDLOOP.`,
+    () => `WRITE: / ls_${pick(abap)}-${pick(props)}.`,
+
+    /* SQL */
+    () => `SELECT ${pick(props)}, SUM(${pick(props)}) FROM ${pick(routes)} GROUP BY 1;`,
+
+    /* Python / ML */
+    () => `df = pd.read_csv('${pick(routes)}.csv').dropna()`,
+    () => `${pick(models)}.fit(X_train, y_train, epochs=${num(64)})`,
+    () => `print(f"acc: {${pick(models)}.score(X_test, y_test):.3f}")`,
+
+    /* Unity / C# */
+    () => `transform.position += velocity * Time.deltaTime;`,
+
+    /* araç çıktısı */
+    () => `[ok] ${pick(routes)}/${pick(fns)} compiled in ${20 + num(380)}ms`,
+    () => `>> build ${hex(7)} · ${num(60)} modules · ${num(900)}kB`,
+    () => `// TODO: ${pick(fns)} ${pick(idents)} before ${pick(routes)}`,
     () => ``
   ];
 
@@ -49,7 +83,10 @@
     host.textContent = '';
 
     const cols = Math.max(2, Math.ceil(window.innerWidth / COL_SPACING));
-    const perScreen = Math.ceil(window.innerHeight / LINE_HEIGHT) + 6;
+    /* Sayfa arka plan sekmesinde kurulursa innerHeight 0 gelebiliyor;
+       alt sınır olmazsa sütun birkaç satıra düşüp tekrara giriyor. */
+    const viewport = Math.max(window.innerHeight || 0, 900);
+    const perScreen = Math.ceil(viewport / LINE_HEIGHT) + 6;
 
     for (let c = 0; c < cols; c++) {
       const col = document.createElement('div');
