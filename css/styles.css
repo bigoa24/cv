@@ -459,7 +459,7 @@ section.block h2::before {
   gap: 6px;
 }
 
-.skill-list span {
+.skill-list > span {   /* > : iki dilli iç içe span'lere baloncuk uygulanmasın */
   font-family: var(--mono);
   font-size: clamp(12px, 10.6px + 0.32vw, 14px);
   padding: 4px 11px;
