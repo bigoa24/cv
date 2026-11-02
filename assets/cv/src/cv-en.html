@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Bilgehan Bayramoğlu — Résumé</title>
+<style>
+@page { size: A4; margin: 13mm 14mm 12mm; }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --ink: #16181d;
+  --muted: #5c6270;
+  --rule: #c9cdd6;
+  --accent: #202329;
+}
+
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
+  font-size: 9.6pt;
+  line-height: 1.42;
+  color: var(--ink);
+  background: #fff;
+}
+
+/* ekranda A4 sayfa gibi görünsün (PDF çıktısını etkilemez) */
+@media screen {
+  body { background: #e9ebef; padding: 24px 0; }
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 13mm 14mm 12mm;
+    background: #fff;
+    box-shadow: 0 2px 14px rgba(0, 0, 0, .18);
+  }
+}
+
+/* ---- başlık ---- */
+header { border-bottom: 1.6pt solid var(--accent); padding-bottom: 7pt; margin-bottom: 11pt; }
+
+h1 {
+  font-size: 21pt;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
+}
+
+.role {
+  margin-top: 2pt;
+  font-size: 10.6pt;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: .01em;
+}
+
+.contact {
+  margin-top: 6pt;
+  font-size: 8.3pt;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.contact a { color: var(--muted); text-decoration: none; }
+.contact .sep { margin: 0 4pt; color: var(--rule); }
+
+/* ---- bölümler ---- */
+section { margin-top: 11pt; }
+section > h2 + * { break-before: avoid; page-break-before: avoid; }
+
+h2 {
+  font-size: 9.2pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .13em;
+  color: var(--accent);
+  padding-bottom: 2.5pt;
+  border-bottom: .6pt solid var(--rule);
+  margin-bottom: 7pt;
+  break-after: avoid;
+  page-break-after: avoid;
+}
+
+p.summary { text-align: justify; }
+
+.item { margin-bottom: 8pt; break-inside: avoid; page-break-inside: avoid; }
+.item:last-child { margin-bottom: 0; }
+
+.item-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 10pt;
+}
+
+.item-title { font-size: 10.2pt; font-weight: 700; }
+.item-org { color: var(--muted); font-size: 9.3pt; margin-top: .5pt; }
+
+.item-date {
+  font-size: 8.6pt;
+  color: var(--muted);
+  white-space: nowrap;
+  letter-spacing: .01em;
+}
+
+ul.bullets { margin: 3.5pt 0 0 11pt; }
+ul.bullets li { margin-bottom: 1.6pt; padding-left: 1pt; }
+ul.bullets li::marker { color: var(--accent); }
+
+/* ---- projeler ----
+   Bu bölüm 2. sayfaya komple alınıyor: aksi halde sayfa sınırı ilk projenin
+   ortasından geçiyor ve 1. sayfanın alt kısmı boş kalıyor. İçerik hacmi
+   değişirse bu kuralı gözden geçir. */
+section.projects { break-before: page; page-break-before: always; }
+@media screen { section.projects { break-before: auto; page-break-before: auto; } }
+
+.project { margin-bottom: 7pt; break-inside: avoid; page-break-inside: avoid; }
+.project:last-of-type { margin-bottom: 0; }
+.project .item-title { font-size: 9.9pt; }
+
+.stack {
+  font-size: 8.5pt;
+  color: var(--accent);
+  margin-top: .5pt;
+  letter-spacing: .005em;
+}
+
+.project p { margin-top: 2pt; text-align: justify; }
+.project .link { font-size: 8.5pt; color: var(--muted); }
+
+.other { margin-top: 6pt; font-size: 8.9pt; color: var(--muted); }
+.other strong { color: var(--ink); font-weight: 600; }
+
+/* ---- yetenekler ---- */
+.skill-row { display: flex; gap: 8pt; margin-bottom: 3pt; break-inside: avoid; }
+.skill-label {
+  flex: 0 0 34mm;
+  font-weight: 700;
+  font-size: 9.1pt;
+}
+.skill-value { flex: 1; }
+
+.lang-row { display: flex; gap: 8pt; }
+.lang-row .skill-label { flex: 0 0 34mm; }
+
+/* ======================= TEMA B: baslik karti (monokrom) =======================
+   CV tamamen siyah-beyaz: yeşil vurgu yok, bütün ayrım gri tonlarıyla kuruluyor.
+   Baskida ve fotokopide guvenli. */
+.theme-band header {
+  background: #1b1e24;
+  color: #fff;
+  border-bottom: none;
+  padding: 8mm 7mm 7mm;
+  margin-bottom: 12pt;
+}
+.theme-band h1 { color: #fff; }
+.theme-band .role { color: #c7ccd6; margin-top: 3pt; }
+/* bant ici genislik 182mm degil 168mm; nowrap satirin sigmasi icin punto dusuk */
+.theme-band .contact { color: #a3aab6; margin-top: 7pt; font-size: 7.5pt; }
+.theme-band .contact a { color: #a3aab6; }
+.theme-band .contact .sep { color: rgba(255, 255, 255, .3); }
+.theme-band h2 {
+  border-bottom: none;
+  background: #f0f1f4;
+  color: #202329;
+  padding: 3pt 5pt;
+  margin-bottom: 7pt;
+}
+.theme-band section { margin-top: 10pt; }
+.theme-band ul.bullets li::marker { color: #8b919d; }
+.theme-band .stack { color: var(--muted); }
+
+</style>
+</head>
+<body class="theme-band">
+<div class="sheet">
+<header>
+<h1>Bilgehan Bayramoğlu</h1>
+<div class="role">Full-Stack Developer</div>
+<div class="contact">İzmir, Türkiye<span class="sep">|</span><a href="mailto:bilgehanbbayramoglu@gmail.com">bilgehanbbayramoglu@gmail.com</a><span class="sep">|</span><a href="https://bilgehanbayramoglu.com">bilgehanbayramoglu.com</a><span class="sep">|</span><a href="https://www.linkedin.com/in/bilgehan-bayramoğlu">linkedin.com/in/bilgehan-bayramoğlu</a><span class="sep">|</span><a href="https://github.com/bigoa24">github.com/bigoa24</a></div>
+</header>
+<section><h2>Profile</h2>
+<p class="summary">Computer Engineering graduate (Yaşar University, 2025), currently continuing my studies in Management Information Systems at Anadolu University Open Education Faculty. I build projects across full-stack web development, mobile applications, machine learning and game development, with internship experience in SAP ABAP development and manual test engineering. Eager to learn new technologies and take on responsibility in diverse projects.</p></section>
+<section><h2>Skills</h2>
+<div class="skill-row">
+<div class="skill-label">Web</div>
+<div class="skill-value">React, Next.js, Node.js, TypeScript, JavaScript, HTML, CSS</div></div>
+<div class="skill-row">
+<div class="skill-label">Backend &amp; Database</div>
+<div class="skill-value">SAP ABAP, C# / .NET, REST API, SQL, Azure SQL, Entity Framework</div></div>
+<div class="skill-row">
+<div class="skill-label">Mobile</div>
+<div class="skill-value">React Native, Expo, Zustand</div></div>
+<div class="skill-row">
+<div class="skill-label">Machine Learning</div>
+<div class="skill-value">Python, TensorFlow, PyTorch, scikit-learn, pandas, NumPy</div></div>
+<div class="skill-row">
+<div class="skill-label">Games &amp; Embedded</div>
+<div class="skill-value">Unity, Electron, Socket.IO, Arduino</div></div>
+<div class="skill-row">
+<div class="skill-label">Testing &amp; Tools</div>
+<div class="skill-value">Manual Testing, Jira, Git</div></div>
+<div class="skill-row">
+<div class="skill-label">Languages</div>
+<div class="skill-value">Turkish (Native), English (Advanced)</div></div>
+</section>
+<section><h2>Experience</h2>
+<div class="item"><div class="item-head"><div>
+<div class="item-title">Test Engineer (Intern)</div>
+<div class="item-org">TAV Technologies</div>
+</div><div class="item-date">Sep 2024 – Oct 2024</div></div>
+<ul class="bullets">
+<li>Wrote and executed manual test cases for airport systems.</li>
+<li>Managed bug tracking and test organisation via Jira.</li>
+<li>Active role in cross-team communication and reporting processes.</li>
+</ul></div>
+<div class="item"><div class="item-head"><div>
+<div class="item-title">SAP ABAP Developer (Intern)</div>
+<div class="item-org">Uzuner CMA Consulting</div>
+</div><div class="item-date">Jul 2024 – Sep 2024</div></div>
+<ul class="bullets">
+<li>Enterprise application development and custom modules in SAP ABAP.</li>
+<li>Designed and modified database tables; query optimisation.</li>
+<li>Analysis and resolution of production-environment bugs.</li>
+</ul></div>
+<div class="item"><div class="item-head"><div>
+<div class="item-title">Technical Staff</div>
+<div class="item-org">Flamel Kimya</div>
+</div><div class="item-date">Jan 2023 – Mar 2023</div></div>
+<ul class="bullets">
+<li>Maintained and monitored the factory's in-house IT infrastructure.</li>
+<li>Computer setup, maintenance and end-user technical support.</li>
+</ul></div>
+</section>
+<section><h2>Education</h2>
+<div class="item"><div class="item-head"><div>
+<div class="item-title">B.Sc. in Computer Engineering</div>
+<div class="item-org">Yaşar University</div>
+</div><div class="item-date">2021 – 2025</div></div></div>
+<div class="item"><div class="item-head"><div>
+<div class="item-title">B.Sc. in Management Information Systems</div>
+<div class="item-org">Anadolu University Open Education Faculty · Ongoing</div>
+</div><div class="item-date">2021 –</div></div></div>
+</section>
+<section class="projects"><h2>Selected Projects</h2>
+<div class="project">
+<div class="item-title">Basketball Analytics — Mobile App</div>
+<div class="stack">React Native, Expo, TypeScript, Zustand</div>
+<p>Live match statistics and analytics app for basketball clubs. Per-player event entry during the game, offline-first storage with automatic sync, post-match editing and reporting with trend charts.</p>
+</div>
+<div class="project">
+<div class="item-title">Velgrad — Multiplayer RPG Card Game</div>
+<div class="stack">Node.js, Express, Socket.IO, JavaScript</div>
+<p>Real-time multiplayer card game running in the browser; lobby for up to 12 players, live state synchronisation over Socket.IO, procedural ID cards and a pixel-art interface.</p>
+</div>
+<div class="project">
+<div class="item-title">Paluk — Idle Fishing Game</div>
+<div class="stack">Electron, Node.js, JavaScript</div>
+<p>Idle fishing game that keeps running in the background; over 60 fish species, dynamic weather and a player-driven market with a live economy.</p>
+</div>
+<div class="project">
+<div class="item-title">Flight API</div>
+<div class="stack">C# / .NET, Entity Framework, Azure SQL</div>
+<p>REST API for flight search, availability queries and booking operations, with an Entity Framework data layer over Azure SQL.</p>
+<div class="link">github.com/bigoa24/FlightApi</div>
+</div>
+<div class="project">
+<div class="item-title">AirlineChat — AI-Powered Flight Chatbot</div>
+<div class="stack">JavaScript, LLM, REST API</div>
+<p>Conversational interface on top of Flight API; users search flights, buy tickets and view existing bookings in natural language.</p>
+<div class="link">github.com/bigoa24/AirlineChat</div>
+</div>
+<div class="project">
+<div class="item-title">Stock Price Prediction</div>
+<div class="stack">Python, scikit-learn, pandas, NumPy</div>
+<p>Comparison of Linear Regression and Random Forest models on financial data, evaluated with MAE, RMSE and R² metrics.</p>
+</div>
+<div class="other"><strong>Other work:</strong> PawPlay Pet Entertainer — motion-triggered interactive device (Arduino Mega 2560, PIR sensor, servo motor) · CookUP — UML modelling, system design and requirements analysis for a recipe sharing platform.</div>
+</section>
+</div>
+</body>
+</html>
