@@ -145,22 +145,11 @@ section.projects { break-before: page; page-break-before: always; }
 .lang-row { display: flex; gap: 8pt; }
 .lang-row .skill-label { flex: 0 0 34mm; }
 
-/* ======================= TEMA B: baslik karti (monokrom) =======================
+/* ======================= TEMA B: serit basliklar (monokrom) =======================
    CV tamamen siyah-beyaz: yeşil vurgu yok, bütün ayrım gri tonlarıyla kuruluyor.
-   Baskida ve fotokopide guvenli. */
-.theme-band header {
-  background: #1b1e24;
-  color: #fff;
-  border-bottom: none;
-  padding: 8mm 7mm 7mm;
-  margin-bottom: 12pt;
-}
-.theme-band h1 { color: #fff; }
-.theme-band .role { color: #c7ccd6; margin-top: 3pt; }
-/* bant ici genislik 182mm degil 168mm; nowrap satirin sigmasi icin punto dusuk */
-.theme-band .contact { color: #a3aab6; margin-top: 7pt; font-size: 7.5pt; }
-.theme-band .contact a { color: #a3aab6; }
-.theme-band .contact .sep { color: rgba(255, 255, 255, .3); }
+   Baskida ve fotokopide guvenli. Baslik bloguna dolgu zemin verilmiyor; isim
+   beyaz zeminde duruyor, altindaki koyu cizgi ayirmaya yetiyor. */
+.theme-band .role { color: #41464f; }
 .theme-band h2 {
   border-bottom: none;
   background: #f0f1f4;
